@@ -28,4 +28,8 @@ def fresh_deck():
         return deck, present
 
 def player_deck_input():
-    while
+    player_input = int(input('*원하시는 카드의 개수를 입력해주세요. (20 또는 40) :'))
+    while not (player_input == 20 or player_input == 40):
+        print("*20 또는 40 으로 다시 입력해주세요.")
+        player_input = int(input('*원하시는 카드의 개수를 입력해주세요. (20 또는 40) :'))
+    return player_input
