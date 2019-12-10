@@ -9,7 +9,7 @@ def select_behavior(present,opponentNum,minChips,maxChips):
     arr = []
     for i in range(length):
         arr.append(p)
-    weight += 1 / len(arr)*30
+    weight += 1 / len(arr)*30 # 일단 임의설정
     
     if average > opponetNum or opponetNum == 10: #자신있을때 / 블러핑의경우포함
         if length%2 == 0:
@@ -25,7 +25,7 @@ def select_behavior(present,opponentNum,minChips,maxChips):
                 arr[-i-1] -= weight * k
                 k += 1
         if opponentNum == 10:
-            if random.randint(1,10) > 3: # 70% 로 저돌적행동
+            if random.randint(1,10) > 3: # 70%로저돌적 행동/테스트후 수정가능성
                 arr[length - 1] += arr[0]
                 arr[0] = 0
             else:
@@ -46,6 +46,42 @@ def select_behavior(present,opponentNum,minChips,maxChips):
                 k += 1
 
     else: #average == opponentNum 가중치사용안할때
+        return random.randint(minChips,maxChips)
+    if average > oppnent:
+        behavior = arrSelect(arr,weight,True)
+    else:
+        behavior = arrSelect(arr,weight,False)
+    if minChips == 0:
+        return behavior
+    else:
+        if behavior == 0:
+            return 0
+        else:
+            return behavior + minChips - 1
+
+
+def arrSelect(arr,weight,advantage): #배열에서 원소선택기
+    randomWeight = weight * 5 #임의설정 테스트후 수정
+    if advantage:
+        if randomWeight > 100:
+            a = 100
+        else:
+            a = random.randint(int(randomWeight),100)
+        b = 0
+        for i in arr:
+            b += i
+            if b >= a:
+                return arr.index(i)
+    else:
+        if randomWeight > 100:
+            a = 0
+        else:
+            a = random.randint(0,int(100 - randomweigh))
+        b = 0
+        for i in arr:
+            b += i
+            if b >= a:
+                return arr.index(i)
 
 
 
