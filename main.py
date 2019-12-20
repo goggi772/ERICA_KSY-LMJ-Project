@@ -90,4 +90,54 @@ def indianFoker():
                 player_turn = False
                 com_turn = True
             elif com_turn:
-                
+                print("*컴퓨터 차례입니다.")
+                print("*컴퓨터가 베팅을 하기를 기다려주세요.")
+                time.sleep(1.5)
+                if isAllIn:
+                    isAllIn = False
+                    if player_betting_chips-com_betting_chips > com_chips:
+                        behavior = select_behavior(present, player_value, com_chips, com_chips) # 다이 or 올인
+                    else:
+                        behavior = select_behavior(present, player_value, (player_betting_chips)-(com_betting_chips), (player_betting_chips)-(com_betting_chips)) # 다이 or 격차만큼 베팅
+                else:
+                    if (player_betting_chips)-(com_betting_chips) >= com_chips: # 칩 부족:다이 or 올인
+                        behavior = select_behavior(present, player_value, com_chips, com_chips) # 다이 or 올인
+                    else:
+                        if com_chips - (player_betting_chips-com_betting_chips) - player_chips >= 0: # 칩 많음:컴퓨터가 베팅에서 손해보지 않게 손봐줌. 최댓값의 경계값을 정해줌
+                            behavior = select_behavior(present, player_value, (player_betting_chips)-(com_betting_chips), (player_betting_chips)-(com_betting_chips) + player_chips) #불필요한 베팅을 자제함.
+                        else:
+                            behavior = select_behavior(present, player_value, (player_betting_chips)-(com_betting_chips), com_chips)
+                table_chips += behavior
+                com_chips -= behavior
+                com_betting_chips += behavior
+                print_table(ro_und, com_card, com_chips, player_chips, table_chips)
+                print("○컴퓨터가", behavior, "개의 칩을 베팅했습니다.", "\n○컴퓨터는 총", com_betting_chips, "개의 칩을 베팅했습니다.")
+                print("●플레이어님은 총", player_betting_chips, "개 의 칩을 베팅하셨습니다.")
+                time.sleep(1)
+                if behavior == 0:
+                    print("*컴퓨터가 다이를 했으므로 베팅은 플레이어님의 승리로 종료되었습니다.\n")
+                    #다이해서 끝
+                    player_betting_win = True
+                    player_turn = True
+                    com_turn = False
+                    break
+                elif player_betting_chips == com_betting_chips:
+                    print("*컴퓨터의 베팅한 칩의 개수가 플레이어님과 같아졌으므로 베팅을 종료합니다.\n")
+                    #동률로 베팅 끝
+                    player_turn = True
+                    com_turn = False
+                    break
+                elif com_chips == 0:
+                    if player_betting_chips > com_betting_chips:
+                        #상대랑 같아지려면 칩수 부족해서 올인
+                        print("*칩 수가 부족했지만, 컴퓨터가 올인을 함으로써 베팅이 종료되었습니다.\n")
+                        player_turn = True
+                        com_turn = False
+                        break
+                    else:
+                        print("*컴퓨터가 올인을 했습니다.")
+                player_turn = True
+                com_turn = False
+        #베팅끝###############################################################################
+        #베팅결과가지고 칩나눠갖고
+        present.remove(com_value)
