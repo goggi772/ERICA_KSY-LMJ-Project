@@ -141,3 +141,30 @@ def indianFoker():
         #베팅끝###############################################################################
         #베팅결과가지고 칩나눠갖고
         present.remove(com_value)
+        time.sleep(0.5)
+        print("*카드를 공개하겠습니다!")
+        time.sleep(0.7)
+        print("* 플레이어", player_card["suit"]+str(player_card["rank"]), "vs", "컴퓨터", com_card["suit"]+str(com_card["rank"]),"*")
+        if com_betting_win:
+            time.sleep(0.5)
+            print("*플레이어님은 칩", player_betting_chips, "개를 잃으셨고, 컴퓨터는 칩", table_chips-com_betting_chips, "개를 얻었습니다.\n")
+            time.sleep(0.5)
+            if player_value == 10: #패널티
+                print("*플레이어님께서 10 을 든 상태로 '다이'를 외쳤으므로 칩 10개라는 패널티를 주겠습니다.\n")
+                time.sleep(0.5)
+                player_chips -= 10
+                com_chips += 10
+            com_chips += table_chips
+            table_chips = 0
+        elif player_betting_win:
+            time.sleep(0.5)
+            print("*플레이어님은 칩", table_chips-player_betting_chips, "개를 얻으셨고, 컴퓨터는 칩", com_betting_chips, "개를 잃었습니다.\n")
+            time.sleep(0.5)
+            if com_value == 10: #패널티
+                print("*컴퓨터는 10 을 든 상태로 '다이'를 외쳤으므로 칩 10개 패널티를 주겠습니다.\n")
+                time.sleep(0.5)
+                com_chips -= 10
+                player_chips += 10
+            player_chips += table_chips
+            table_chips = 0
+        elif player_value > com_value:
