@@ -168,3 +168,26 @@ def indianFoker():
             player_chips += table_chips
             table_chips = 0
         elif player_value > com_value:
+            time.sleep(0.5)
+            print("*숫자 비교를 해보았을 때, 플레이어님이", ro_und, "라운드에서 승리하셨습니다.")
+            time.sleep(0.5)
+            print("*플레이어님은 칩", table_chips-player_betting_chips, "개를 얻으셨고, 컴퓨터는 칩", com_betting_chips, "개를 잃었습니다.\n")
+            time.sleep(0.5)
+            player_chips += table_chips
+            table_chips = 0
+        elif player_value < com_value:
+            print("*숫자 비교를 해보았을 때, 컴퓨터가", ro_und, "라운드에서 승리했습니다.")
+            print("*플레이어님은 칩", player_betting_chips, "개를 잃으셨고, 컴퓨터는 칩", table_chips-com_betting_chips, "개를 얻었습니다.\n")
+            time.sleep(0.5)
+            com_chips += table_chips
+            table_chips = 0
+            time.sleep(0.5)
+        else:#숫자가 같을때
+            print("*숫자가 같네요. 비겼습니다. 테이블 위의 베팅된 칩은 그대로 두고 다음 라운드 진행하겠습니다.\n")
+            time.sleep(0.5)
+        if not (player_chips-1 > 0 and com_chips-1 > 0):
+            break
+        while not more("*다음 라운드를 시작하시겠습니까? (y/n) : "):
+            print("*준비되시면 y 를 입력해주시길 바랍니다.")
+            pass
+
