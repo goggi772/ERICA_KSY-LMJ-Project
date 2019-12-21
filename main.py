@@ -191,3 +191,39 @@ def indianFoker():
             print("*준비되시면 y 를 입력해주시길 바랍니다.")
             pass
 
+    if not (player_chips-1 > 0 and com_chips-1 > 0):
+        if (player_chips-1) == (com_chips-1):
+            print("*양쪽 플레이어의 칩 부족으로 더 이상 게임 진행이 불가능한 상태입니다.\n*최종승패를 가르도록 하겠습니다.\n")
+            print("!인디언포커 무승부! <플레이어 칩 개수 : ", player_chips, "개", " vs ", "컴퓨터 칩 개수 : ", com_chips, "개>\n",sep='')
+            time.sleep(1)
+        if not (player_chips-1) > 0:
+            print("*플레이어님의 칩 부족으로 더 이상 게임 진행이 불가능한 상태입니다.\n*최종승패를 가르도록 하겠습니다.\n")
+            time.sleep(1)
+            print("!컴퓨터 인디언포커 최종승리! < 컴퓨터 칩 개수 : ", com_chips, "개", " vs ", "플레이어 칩 개수 : ",player_chips, "개\n(음수는 빚진 것 입니다.)\n",sep='')
+            time.sleep(0.5)
+        elif not (com_chips-1) > 0:
+            print("*컴퓨터의 칩 부족으로 더 이상 게임 진행이 불가능한 상태입니다.\n*최종승패를 가르도록 하겠습니다.\n")
+            time.sleep(1)
+            print("!플레이어 인디언포커 최종승리! <플레이어 칩 개수 : ", player_chips, "개", " vs ", "컴퓨터 칩 개수 : ", com_chips, "개>\n(음수는 빚진 것 입니다.)\n",sep='')
+            time.sleep(0.5)
+    else:
+        print("*덱이  모두 소진된 이유로 칩의 개수에 근거하여 최종 승패를 가리도록 하겠습니다.\n")
+        time.sleep(1)
+        if com_chips > player_chips:
+            print("!컴퓨터 인디언포커 최종승리! < 컴퓨터 칩 개수 : ", com_chips, "개", " vs ", "플레이어 칩 개수 : ",player_chips, "개\n",sep='')
+        elif com_chips < player_chips:
+            print("!플레이어 인디언포커 최종승리! <플레이어 칩 개수 : ", player_chips, "개", " vs ", "컴퓨터 칩 개수 : ", com_chips, "개>\n",sep='')
+        else:
+            print("!인디언포커 무승부! <플레이어 칩 개수 : ", player_chips, "개", " vs ", "컴퓨터 칩 개수 : ", com_chips, "개>\n",sep='')
+        time.sleep(0.5)
+    #more
+    if more("*게임을 한 판 더 하겠습니까? (y/n) : "):
+        print("*새 게임 세트를 준비합니다.\n")
+        time.sleep(1)
+        print("*새 게임을 시작합니다.\n")
+        indianFoker()
+    else:
+        print("*게임을 종료합니다")
+
+indianFoker()
+            
