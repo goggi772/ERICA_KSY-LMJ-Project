@@ -21,4 +21,4 @@
 한쪽의 칩이 모두 소진되거나 덱이 모두 소진되었을때 더 많은 칩을 가진쪽이 최종 승리하게 됩니다.
 
 ## 상세내용
-상세내용은 wiki를 참고해주십시오.
+상세내용은 [wiki](https://github.com/goggi772/ERICA_KSY-LMJ-Project/wiki)를 참고해주십시오.
