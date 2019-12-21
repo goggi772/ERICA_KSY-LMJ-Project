@@ -48,7 +48,7 @@ def select_behavior(present,opponentNum,minChips,maxChips):
 
     else: #average == opponentNum 가중치사용안할때
         return random.randint(minChips,maxChips)
-    if average > oppnentNum:
+    if average > opponentNum:
         behavior = arrSelect(arr,weight,True)
     else:
         behavior = arrSelect(arr,weight,False)
