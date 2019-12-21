@@ -1,3 +1,4 @@
+import random
 def select_behavior(present,opponentNum,minChips,maxChips):
     average = int(sum(present) / len(present)) #덱에 남은 카드들 평균
     weight  = abs(average - opponentNum)  #가중치
@@ -11,7 +12,7 @@ def select_behavior(present,opponentNum,minChips,maxChips):
         arr.append(p)
     weight += 1 / len(arr)*30 # 일단 임의설정
     
-    if average > opponetNum or opponetNum == 10: #자신있을때 / 블러핑의경우포함
+    if average > opponentNum or opponentNum == 10: #자신있을때 / 블러핑의경우포함
         if length%2 == 0:
             k = 1
             for i in range(length//2,length):
@@ -31,7 +32,7 @@ def select_behavior(present,opponentNum,minChips,maxChips):
             else:
                 arr[length - 1] += arr[0]/2
                 arr[0] /= 2
-    elif average < opponetNum:#자신없을때
+    elif average < opponentNum:#자신없을때
         if length%2 == 0:
             k = 1
             for i in range(length//2,length):
@@ -76,7 +77,7 @@ def arrSelect(arr,weight,advantage): #배열에서 원소선택기
         if randomWeight > 100:
             a = 0
         else:
-            a = random.randint(0,int(100 - randomweigh))
+            a = random.randint(0,int(100 - randomWeight))
         b = 0
         for i in arr:
             b += i
