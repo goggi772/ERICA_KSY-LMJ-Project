@@ -61,8 +61,8 @@ def indianFoker():
                 player_betting_chips += response
                 print_table(ro_und, com_card, com_chips, player_chips, table_chips)
             
-                print("●플레이어님께서", response, "개의 칩을 베팅하셨습니다.", "\n●플레이어님은 총", player_betting_chips, "개의 칩을 베팅하셨습니다.")
-                print("○컴퓨터는 총", com_betting_chips, "개 의 칩을 베팅했습니다.")
+                print("●  플레이어님께서", response, "개의 칩을 베팅하셨습니다.", "\n●  플레이어님은 총", player_betting_chips, "개의 칩을 베팅하셨습니다.")
+                print("○  컴퓨터는 총", com_betting_chips, "개 의 칩을 베팅했습니다.")
                 time.sleep(1)
                 if response == 0:
                     print("*플레이어님께서 다이를 하셨으므로 베팅은 컴퓨터의 승리로 종료되었습니다.\n")
@@ -111,8 +111,8 @@ def indianFoker():
                 com_chips -= behavior
                 com_betting_chips += behavior
                 print_table(ro_und, com_card, com_chips, player_chips, table_chips)
-                print("○컴퓨터가", behavior, "개의 칩을 베팅했습니다.", "\n○컴퓨터는 총", com_betting_chips, "개의 칩을 베팅했습니다.")
-                print("●플레이어님은 총", player_betting_chips, "개 의 칩을 베팅하셨습니다.")
+                print("○  컴퓨터가", behavior, "개의 칩을 베팅했습니다.", "\n○  컴퓨터는 총", com_betting_chips, "개의 칩을 베팅했습니다.")
+                print("●  플레이어님은 총", player_betting_chips, "개 의 칩을 베팅하셨습니다.")
                 time.sleep(1)
                 if behavior == 0:
                     print("*컴퓨터가 다이를 했으므로 베팅은 플레이어님의 승리로 종료되었습니다.\n")
@@ -144,7 +144,7 @@ def indianFoker():
         time.sleep(0.5)
         print("*카드를 공개하겠습니다!")
         time.sleep(0.7)
-        print("* 플레이어", player_card["suit"]+str(player_card["rank"]), "vs", "컴퓨터", com_card["suit"]+str(com_card["rank"]),"*")
+        print("* 플레이어", player_card["suit"]+" "+str(player_card["rank"]), "vs", "컴퓨터", com_card["suit"]+" "+str(com_card["rank"]),"*")
         if com_betting_win:
             time.sleep(0.5)
             print("*플레이어님은 칩", player_betting_chips, "개를 잃으셨고, 컴퓨터는 칩", table_chips-com_betting_chips, "개를 얻었습니다.\n")
